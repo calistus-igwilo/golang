@@ -10,15 +10,29 @@ lower-case
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
 var str string 
 
 func main() {
-	fmt.Println("Enter text, please : ")
-	fmt.Scanf("%s",  &str)
+	fmt.Println("Enter string, please : ")
+	reader := bufio.NewReader(os.Stdin)
+
+	// ReadString will block until the delimiter is entered
+	str, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println("An error occured while reading string. Please try again", err)
+		return
+	}
+	
+	// remove the delimeter from the string
+	str = strings.TrimSuffix(str, "\n")
+	
+	// convert string to lowercase 
 	strLower := strings.ToLower(str)
 
 	if strLower[0] == 'i' && strLower[len(strLower)-1] == 'n' && strings.Contains(strLower, "a") {
