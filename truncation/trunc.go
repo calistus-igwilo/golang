@@ -8,9 +8,11 @@ package main
 import "fmt"
 
 var floatNum float64
+
 func main(){
 	fmt.Println("Enter a float value : ")
 	fmt.Scanf("%f", &floatNum)
-	fmt.Printf("Truncated float: %.0f ", floatNum)
+	//fmt.Printf("Truncated float: %.0f ", floatNum)  This line rounds before truncating
+	fmt.Printf("Truncated float number: %d", int(floatNum))  // correct way to truncate to int 
 
 }
