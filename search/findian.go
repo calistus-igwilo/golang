@@ -35,9 +35,9 @@ func main() {
 	// convert string to lowercase 
 	strLower := strings.ToLower(str)
 
-	if strLower[0] == 'i' && strLower[len(strLower)-1] == 'n' && strings.Contains(strLower, "a") {
-		fmt.Println("Found")
+	if strings.HasPrefix(strLower, "i") && strings.HasSuffix(strLower, "n") && strings.Contains(strLower, "a") {
+		fmt.Println("Found!")
 	} else {
-		fmt.Println("Not Found")
+		fmt.Println("Not Found!")
 	}
 }
