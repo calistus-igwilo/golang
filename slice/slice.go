@@ -29,7 +29,7 @@ func main() {
 	
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		fmt.Println("Enter Integer number or X to exit : ")
+		
 		 line := scanner.Text()
 		 if line == "X" {
 			break // to stop writing enter X and press enter
@@ -38,6 +38,8 @@ func main() {
 		 sli = append(sli, num)
 		 // sort the slice
 		 sort.Ints(sli)
+		 fmt.Print(sli)
+		 fmt.Println("Enter Integer number or X to exit : ")
 	}
-	fmt.Print(sli)
+	
 }
