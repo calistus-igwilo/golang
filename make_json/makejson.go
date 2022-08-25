@@ -39,7 +39,8 @@ func main () {
 	idMap = make(map[string]string)
 
 	// assign values to map
-	idMap[name] = address
+	idMap["Name"] = name
+	idMap["Address"] = address
 
 	barr, _ := json.Marshal(idMap)
 
