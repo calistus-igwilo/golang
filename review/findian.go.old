@@ -1,0 +1,32 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"log"
+	"os"
+	"strings"
+)
+
+//var arr []string
+
+
+func main() {
+	const fileName = "test.txt"
+
+	file, err := os.Open(fileName)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := strings.Split(scanner.Text(), " ")
+		fname, lname := line[0], line[1]
+		fmt.Printf("%s %s", fname, lname)
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatalln(err)
+	}
+}
