@@ -38,6 +38,6 @@ func main() {
 	if strings.HasPrefix(strLower, "i") && strings.HasSuffix(strLower, "n") && strings.Contains(strLower, "a") {
 		fmt.Println("Found!")
 	} else {
-		fmt.Println("Not Found!")
+		fmt.Println("Not Found")
 	}
 }
