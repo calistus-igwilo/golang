@@ -24,42 +24,65 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 var (
-	nums = make([]int, 0, 3)
+	//nums = make([]int, 0, 3)
 	
 )
+/* func ReadInput(){
+	fmt.Println("Enter the numbers, seperate each by a space")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	arr := scanner.Text()
+} */
 
-func swap(num1 int, num2 int) {
-	num1, num2 = num2, num1
+func StringToInteger(str string) []int {
+    var nums []int
+    for _, char := range strings.Fields(str) {
+        num, err := strconv.Atoi(char)
+		if err != nil {
+			return nil
+		}
+        nums = append(nums, num)
+    }
+    return nums
 }
 
-func main() {
-	// accept numbers from user
-	fmt.Println("Enter Integer number or X to exit : ")
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		
-		 line := scanner.Text()
-		 if line == "X" {
-			break // to stop writing enter X and press enter
-		 }
-		 num, _ := strconv.Atoi(line)
-		 nums = append(nums, num)
-	
-		 fmt.Println("Enter Integer number or X to exit : ")
-	}
-	// sort numbers
+
+func Swap(nums []int, i int) {
+	// Swap values at index i and index i+1
+	nums[i], nums[i+1] = nums[i+1], nums[i]
+}
+
+
+func BubbleSort(arr []int){
 	swapped := true
     for swapped {
         swapped = false
-        for i := 1; i < len(nums); i++ {
-            if nums[i-1] > nums[i] {
-                nums[i], nums[i-1] = nums[i-1], nums[i]
+        for i := 0; i < len(arr)-1; i++ {
+            if arr[i] > arr[i+1] {
+                Swap(arr, i)
                 swapped = true
             }
         }
     }
+}
+
+
+func main() {
+	// accept numbers from user
+	fmt.Println("Enter the numbers, seperate each by a space")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	
+	// convert input string to integer array
+	nums := StringToInteger(scanner.Text()) 
+
+	// sort the numbers
+	BubbleSort(nums)
+
+	// print sorted numbers on one line
 	fmt.Println(nums)
 }
