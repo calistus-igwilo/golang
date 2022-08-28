@@ -27,19 +27,16 @@ import (
 	"strings"
 )
 
-var (
-	//nums = make([]int, 0, 3)
-	
-)
-/* func ReadInput(){
+func ReadInput() string {
 	fmt.Println("Enter the numbers, seperate each by a space")
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
-	arr := scanner.Text()
-} */
+	return scanner.Text()
+}
 
 func StringToInteger(str string) []int {
-    var nums []int
+	// convert number string to integer array
+    var nums = make([]int, 0, 10)
     for _, char := range strings.Fields(str) {
         num, err := strconv.Atoi(char)
 		if err != nil {
@@ -73,16 +70,14 @@ func BubbleSort(arr []int){
 
 func main() {
 	// accept numbers from user
-	fmt.Println("Enter the numbers, seperate each by a space")
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
+	str := ReadInput()
 	
 	// convert input string to integer array
-	nums := StringToInteger(scanner.Text()) 
+	nums := StringToInteger(str) 
 
 	// sort the numbers
 	BubbleSort(nums)
 
 	// print sorted numbers on one line
-	fmt.Println(nums)
+	fmt.Println("Sorted numbers: ", nums)
 }
