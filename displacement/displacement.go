@@ -18,4 +18,37 @@ displacement. The function returned by GenDisplaceFn() should take
 one float64 argument t, representing time, and return one float64
 argument which is the displacement travelled after time t.
 */
+package main
 
+import (
+	"fmt"
+)
+
+var(
+	accel float64
+	vel float64
+	disp float64
+	t float64
+)
+
+func ReadInput(){
+	fmt.Println("Enter the acceleration, velocity and distance, seperated by spaces")
+	fmt.Scanf("%f %f %f", &accel, &vel, &disp)
+	fmt.Println("Enter the value of time: ")
+	fmt.Scanf("%f", &t)
+}
+
+func GenDisplaceFn(accel float64, vel float64, disp float64) func (float64) float64 {
+	fn := func (t float64) float64{
+		s := 0.5 * accel * t * t + vel * t + disp
+		return s
+	}
+	return fn
+}
+
+func main() {
+	ReadInput()
+
+	fn := GenDisplaceFn(accel, vel, disp)
+	fmt.Println(fn(t))
+}
